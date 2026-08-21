@@ -8,6 +8,20 @@
 - **Next.js App Router**: Routing and server/client composition model.
 - **Modular Monolith**: One deployable Next.js application containing isolated feature modules. No separate backend application or microservices are introduced.
 
+### 1.1 Source Organization
+
+The implementation uses a hybrid feature-based source tree:
+
+```text
+src/
+├── app/          Next.js routes and route-level composition
+├── features/     Feature-owned UI, types, hooks, schemas, and utilities
+├── components/   Truly shared UI components
+└── lib/          Shared infrastructure and utilities
+```
+
+Feature-specific property-discovery and Admin presentation belongs under `src/features/`. Shared shadcn primitives, layout components, and feedback states belong under `src/components/`. Route files remain under `src/app/` and do not own reusable feature code.
+
 ## 2. UI
 
 - **Tailwind CSS**: Utility-based styling within the presentation layer. The MVP is Arabic-only and RTL.

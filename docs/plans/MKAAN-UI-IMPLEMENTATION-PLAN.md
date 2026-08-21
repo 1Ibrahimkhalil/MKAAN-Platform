@@ -631,70 +631,72 @@ This plan defines every UI screen, component, state, responsive variant, and imp
 
 ## 5. Shared Component Inventory
 
-### 5.1 Layout components (already partially implemented)
+Only entries marked **Implemented** exist in the current source tree. Entries marked **To create** are future implementation-plan items and do not represent existing files or placeholder directories.
+
+### 5.1 Shared layout components
 
 | Component | File | Status | Notes |
 | --- | --- | --- | --- |
-| Public Header | `src/components/layout/public-header.tsx` | To create | Sticky, blur, border, shadow, logo, RTL nav |
-| Public Footer | `src/components/layout/public-footer.tsx` | To create | Company info, links, contact |
+| Public Header | `src/components/layout/public-header.tsx` | Implemented | Sticky, blur, border, shadow, logo, RTL nav |
+| Public Footer | `src/components/layout/public-footer.tsx` | Implemented | Company info, links, contact |
 | Admin Shell | `src/components/layout/admin-shell.tsx` | To create | Dark nav sidebar + light content |
-| Breadcrumbs | `src/components/ui/breadcrumbs.tsx` | To create | RTL breadcrumb pattern |
-| Container | `src/components/layout/container.tsx` | To create | Max-width 1280px, responsive margins |
+| Breadcrumbs | `src/components/layout/breadcrumbs.tsx` | Implemented | RTL breadcrumb pattern |
+| Container | `src/components/layout/container.tsx` | Implemented | Max-width 1280px, responsive margins |
 
-### 5.2 Property components
-
-| Component | File | Status | Notes |
-| --- | --- | --- | --- |
-| Property Card | `src/components/property/property-card.tsx` | To create | 16:9 image, price-first, badges, hover-lift |
-| Property Grid | `src/components/property/property-grid.tsx` | To create | Responsive card grid |
-| Property Gallery | `src/components/property/property-gallery.tsx` | To create | Main image + carousel, failure isolation |
-| Property Info | `src/components/property/property-info.tsx` | To create | General + category-specific info |
-| Similar Properties | `src/components/property/similar-properties.tsx` | To create | Secondary, failure isolated |
-| Featured Properties | `src/components/property/featured-properties.tsx` | To create | Homepage featured section |
-
-### 5.3 Search and filter components
+### 5.2 Property-discovery feature components
 
 | Component | File | Status | Notes |
 | --- | --- | --- | --- |
-| Search Bar | `src/components/search/search-bar.tsx` | To create | Rounded, category-aware |
-| Filter Panel | `src/components/search/filter-panel.tsx` | To create | Desktop sidebar, mobile drawer |
-| Filter Chip | `src/components/search/filter-chip.tsx` | To create | Active filter indicator |
-| Sort Control | `src/components/search/sort-control.tsx` | To create | Sort dropdown |
-| Load More | `src/components/search/load-more.tsx` | To create | Incremental loading indicator |
+| Property Card | `src/features/property-discovery/components/property-card.tsx` | Implemented | 16:9 image, price-first, badges, hover-lift |
+| Property Grid | `src/features/property-discovery/components/property-grid.tsx` | Implemented | Responsive card grid |
+| Property Gallery | `src/features/property-discovery/components/property-gallery.tsx` | To create | Main image + carousel, failure isolation |
+| Property Info | `src/features/property-discovery/components/property-info.tsx` | To create | General + category-specific info |
+| Similar Properties | `src/features/property-discovery/components/similar-properties.tsx` | To create | Secondary, failure isolated |
+| Featured Properties | `src/features/homepage/components/featured-properties.tsx` | To create | Homepage featured section |
+
+### 5.3 Property-discovery search components
+
+| Component | File | Status | Notes |
+| --- | --- | --- | --- |
+| Search Bar | `src/features/property-discovery/components/search-bar.tsx` | Implemented | Rounded, category-aware |
+| Filter Panel | `src/features/property-discovery/components/filter-panel.tsx` | Implemented | Desktop sidebar, mobile drawer |
+| Filter Chip | `src/features/property-discovery/components/filter-chip.tsx` | To create | Active filter indicator |
+| Sort Control | `src/features/property-discovery/components/sort-control.tsx` | Implemented | Sort dropdown |
+| Load More | `src/features/property-discovery/components/load-more.tsx` | Implemented | Incremental loading indicator |
 
 ### 5.4 Form components
 
 | Component | File | Status | Notes |
 | --- | --- | --- | --- |
-| Form Field | `src/components/form/form-field.tsx` | To create | Label, input, error, helper text |
-| Form Error | `src/components/form/form-error.tsx` | To create | Field-level and form-level errors |
-| Form Summary | `src/components/form/form-summary.tsx` | To create | Multi-field error summary |
-| Radio Card | `src/components/form/radio-card.tsx` | To create | Mutually exclusive choices |
-| Submit Button | `src/components/form/submit-button.tsx` | To create | Loading, disabled states |
+| Form Field | `src/components/ui/form-field.tsx` | Implemented | Label, input, error, helper text |
+| Form Error | `src/components/ui/form-error.tsx` | Implemented | Field-level and form-level errors |
+| Form Summary | `src/components/ui/form-summary.tsx` | To create | Multi-field error summary |
+| Radio Card | `src/components/ui/radio-card.tsx` | Implemented | Mutually exclusive choices |
+| Submit Button | `src/components/ui/submit-button.tsx` | Implemented | Loading, disabled states |
 
 ### 5.5 Service components
 
 | Component | File | Status | Notes |
 | --- | --- | --- | --- |
-| Service Card | `src/components/service/service-card.tsx` | To create | Service entry card |
-| Service Form | `src/components/service/service-form.tsx` | To create | Dynamic form per service |
+| Service Card | `src/features/services/components/service-card.tsx` | To create | Service entry card |
+| Service Form | `src/features/services/components/service-form.tsx` | To create | Dynamic form per service |
 
 ### 5.6 CTA components
 
 | Component | File | Status | Notes |
 | --- | --- | --- | --- |
-| CTA Section | `src/components/cta/cta-section.tsx` | To create | Before Similar Properties |
-| WhatsApp Button | `src/components/cta/whatsapp-button.tsx` | To create | WhatsApp green action |
+| CTA Section | `src/features/property-discovery/components/cta-section.tsx` | To create | Before Similar Properties |
+| WhatsApp Button | `src/components/ui/whatsapp-button.tsx` | To create | WhatsApp green action |
 
 ### 5.7 Admin components
 
 | Component | File | Status | Notes |
 | --- | --- | --- | --- |
-| Admin Sidebar | `src/components/admin/admin-sidebar.tsx` | To create | Dark nav, collapsible |
-| Admin Table | `src/components/admin/admin-table.tsx` | To create | Data table with filters |
-| Status Badge | `src/components/admin/status-badge.tsx` | To create | Lead/property status |
-| Admin Metric Card | `src/components/admin/metric-card.tsx` | To create | Montserrat numbers |
-| Admin Form | `src/components/admin/admin-form.tsx` | To create | Admin create/edit form |
+| Admin Sidebar | `src/features/admin/components/admin-sidebar.tsx` | To create | Dark nav, collapsible |
+| Admin Table | `src/features/admin/components/admin-table.tsx` | To create | Data table with filters |
+| Status Badge | `src/features/admin/components/status-badge.tsx` | Implemented | Lead/property status |
+| Admin Metric Card | `src/features/admin/components/metric-card.tsx` | To create | Montserrat numbers |
+| Admin Form | `src/features/admin/components/admin-form.tsx` | To create | Admin create/edit form |
 
 ### 5.8 Existing feedback components (already implemented)
 
@@ -768,9 +770,9 @@ This plan defines every UI screen, component, state, responsive variant, and imp
 
 ## 8. Implementation Order
 
-### Phase 1: Shared Foundation (prerequisite for all screens)
+### Phase 1: Shared UI and initial feature-owned components (prerequisite for all screens)
 
-Build shared components and layout infrastructure first. Every screen depends on these.
+Build shared components and layout infrastructure first. Initial property-discovery and Admin presentation remains under its owning feature rather than being promoted to global shared UI.
 
 | Priority | Component | Depends on | Notes |
 | --- | --- | --- | --- |

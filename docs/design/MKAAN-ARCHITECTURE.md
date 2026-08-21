@@ -144,6 +144,25 @@ All business operations enter the server-side application boundary before they c
 
 The concrete Next.js request mechanism is intentionally not prescribed by this document. The required property is that the operation is executed through a server-side boundary with validation and authorization where applicable.
 
+### 4.4 Implemented Source Organization
+
+The current application uses a hybrid feature-based source organization:
+
+```text
+src/
+├── app/          Next.js routes and route-level technical boundaries
+├── features/     Feature-owned UI and future feature contracts
+├── components/   Truly shared presentation components
+└── lib/          Shared infrastructure and utilities
+```
+
+The current feature-owned UI is organized as follows:
+
+- `src/features/property-discovery/` owns property cards, property grids, search, filtering, sorting, and incremental-loading presentation.
+- `src/features/admin/` owns Admin-specific status presentation.
+
+Shared presentation is limited to `src/components/ui/`, `src/components/layout/`, and `src/components/feedback/`. `src/app/` does not own reusable feature components, and no empty feature directories are created before feature work exists.
+
 ## 5. Logical Layers
 
 ### 5.1 Presentation Layer

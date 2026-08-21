@@ -230,6 +230,20 @@ The concrete Next.js request mechanism is intentionally not selected.
 
 **Shared cross-cutting contracts** may cover validation primitives, error classes, authorization context, visibility policy, analytics events, SEO metadata, media validation, and incremental result contracts. Shared code must not become an unowned business-logic layer.
 
+### 3.7 Implemented Source Organization
+
+The implemented source tree follows a hybrid feature-based architecture:
+
+```text
+src/
+├── app/          Next.js routes and route-level composition
+├── features/     Feature-owned UI and future feature contracts
+├── components/   Truly shared UI components
+└── lib/          Shared infrastructure and utilities
+```
+
+Feature-specific presentation currently belongs to `src/features/property-discovery/` and `src/features/admin/`. Reusable primitives, layout components, and feedback states remain under `src/components/`. The App Router does not own reusable feature components, and no speculative empty feature directories are created.
+
 ## 4. Feature Module Design
 
 All feature modules expose application-level contracts, own their domain rules, and use approved cross-module interfaces. No module queries another module's tables directly or bypasses its business boundary.

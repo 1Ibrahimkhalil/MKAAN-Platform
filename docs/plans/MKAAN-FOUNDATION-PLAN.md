@@ -153,7 +153,7 @@ pnpm dlx shadcn@latest add button card input label badge skeleton alert separato
 
 **Installation command(s) later:** None.
 
-**Configuration required:** Use `src/` as the source root. Keep server, domain, data-access, integration, and feature directories reserved for later stages rather than creating speculative abstractions.
+**Configuration required:** Use `src/` as the source root. Keep server, domain, data-access, and integration layers reserved for later stages rather than creating speculative abstractions. Feature directories are created only when they contain feature-owned code.
 
 **Files/directories expected:**
 
@@ -162,16 +162,19 @@ src/
   app/
   components/
     ui/
+    layout/
     feedback/
-  config/
   lib/
-  types/
+  features/
+    property-discovery/
+      components/
+    admin/
+      components/
 ```
 
-Reserved for later work, not implemented in Foundation:
+Reserved for later server-side work:
 
 ```text
-src/features/
 src/server/
 src/domain/
 src/data-access/
@@ -447,7 +450,7 @@ pnpm add lucide-react
 - Do not add Clerk, database, analytics, monitoring, or deployment variables.
 - Add `.env.example` only if a concrete Foundation variable is approved.
 - Ignore secrets through `.gitignore`.
-- Do not copy the credential from `opencode.json`.
+- Keep `opencode.json` local and ignored; do not copy its credential into application configuration or source code.
 
 **Files/directories expected:** `next.config.ts`, `.gitignore`, and conditional `.env.example` or `src/config/env.ts` only if approved variables exist.
 
@@ -455,7 +458,7 @@ pnpm add lucide-react
 
 **Prerequisites:** Steps 2 through 4; approval of any non-secret Foundation variables.
 
-**Verification criteria:** No secret is committed; no provider-specific variable is introduced; `opencode.json` is unchanged; no external integration is initialized.
+**Verification criteria:** No secret is committed; no provider-specific variable is introduced; `opencode.json` is ignored and untracked while remaining local; no external integration is initialized.
 
 ### Step 14: Configure ESLint, Prettier, and Development Scripts
 
@@ -633,7 +636,6 @@ pnpm add lucide-react
 - `src/components/ui/skeleton.tsx`
 - `src/components/ui/alert.tsx`
 - `src/components/ui/separator.tsx`
-- `src/components/ui/visually-hidden.tsx`
 - `src/components/feedback/loading-state.tsx`
 - `src/components/feedback/empty-state.tsx`
 - `src/components/feedback/error-state.tsx`
@@ -657,7 +659,7 @@ These are created only if a concrete non-secret Foundation variable is approved.
 - `docs/requirements/MKAAN-SRS.md`
 - `docs/design/MKAAN-SOFTWARE-DESIGN.md`
 - `docs/design/MKAAN-DESIGN-SYSTEM.md`
-- `opencode.json`
+- `opencode.json` remains local and ignored; it is not a repository file.
 - Stitch projects, screens, and assets
 
 ## 9. Risks and Unresolved Decisions
@@ -670,7 +672,7 @@ These are created only if a concrete non-secret Foundation variable is approved.
 6. **Testing framework:** Testing is explicitly deferred. Foundation verification uses type, lint, format, and build checks only.
 7. **Environment variables:** No provider-specific variables may be added. Any application URL or other Foundation variable requires approval.
 8. **Build without feature routes:** Do not create a fake Homepage to make a build pass. If Next.js requires a route for a full production build, resolve that as a separate approval decision.
-9. **Credential exposure:** `opencode.json` contains a credential-bearing MCP header. It is outside this Foundation task and must not be copied into application configuration. Credential rotation is a separate security action.
+9. **Credential exposure:** `opencode.json` contains local credential-bearing MCP configuration. It is ignored and untracked; it must not be copied into application configuration. Credential rotation remains a separate security action.
 10. **Deferred architecture:** The folder layout supports the Software Design boundaries but does not resolve the exact application architecture under `DEFER-002`.
 
 ## 10. Approval Gate

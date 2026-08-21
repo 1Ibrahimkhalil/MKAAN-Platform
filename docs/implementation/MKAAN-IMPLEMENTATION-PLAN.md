@@ -82,6 +82,8 @@ No existing UI/UX, Stitch, image, Figma, or separate Design System source files 
 
 **Definition of Done:** The codebase can support the Software Design architecture, the presentation layer cannot access Prisma directly, shared contracts have clear ownership, and the foundation contains no feature business logic.
 
+The implemented source organization for this foundation is hybrid feature-based: `src/app/` contains routes and route-level composition, `src/features/` contains feature-owned code, `src/components/` contains genuinely shared UI, and `src/lib/` contains shared infrastructure and utilities. Feature directories are created only when they contain owned code.
+
 **Explicitly out of scope:** Property behavior, lead behavior, service behavior, publication rules, Prisma schema, migrations, real database operations, Clerk flows, customer authentication, production pages, APIs, and provider implementations.
 
 ### Stage 4: UI Implementation
