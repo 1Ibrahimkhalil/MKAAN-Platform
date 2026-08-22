@@ -1,35 +1,38 @@
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
-export interface BreadcrumbItem {
+export interface BreadcrumbItemData {
   label: string;
   href?: string;
 }
 
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumbs({ items }: { items: BreadcrumbItemData[] }) {
   return (
-    <nav aria-label="readcrumb" className="flex items-center gap-1 text-sm">
-      <Link
-        href="/"
-        className="text-muted-foreground hover:text-foreground transition-colors"
-      >
-        الرئيسية
-      </Link>
-      {items.map((item) => (
-        <span key={item.label} className="flex items-center gap-1">
-          <ChevronLeft className="text-muted-foreground/50 size-3" />
-          {item.href ? (
-            <Link
-              href={item.href}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </Link>
-          ) : (
-            <span className="text-foreground font-medium">{item.label}</span>
-          )}
-        </span>
-      ))}
-    </nav>
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink render={<Link href="/" />}>الرئيسية</BreadcrumbLink>
+        </BreadcrumbItem>
+        {items.map((item) => (
+          <BreadcrumbItem key={item.label}>
+            <BreadcrumbSeparator />
+            {item.href ? (
+              <BreadcrumbLink render={<Link href={item.href} />}>
+                {item.label}
+              </BreadcrumbLink>
+            ) : (
+              <BreadcrumbPage>{item.label}</BreadcrumbPage>
+            )}
+          </BreadcrumbItem>
+        ))}
+      </BreadcrumbList>
+    </Breadcrumb>
   );
 }

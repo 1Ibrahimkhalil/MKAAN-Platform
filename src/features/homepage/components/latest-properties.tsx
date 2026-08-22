@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, BedDouble, Bath, Square, ArrowLeft } from "lucide-react";
+import { MapPin, BedDouble, Square, ArrowLeft } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { useRevealOnScroll } from "@/lib/hooks/use-reveal-on-scroll";
 import { formatPrice } from "@/lib/utils";
 import { TRANSACTION_LABELS, CURRENCY_SYMBOL } from "@/config";
 
-interface Property {
+interface LatestProperty {
   id: string;
   slug: string;
   title: string;
@@ -17,55 +17,50 @@ interface Property {
   priceSuffix?: string;
   image: string;
   transactionType: "sale" | "rent";
-  badge?: "مميز" | "جديد" | "لقطة";
+  badge?: string;
   rooms?: number;
-  bathrooms?: number;
   area?: number;
 }
 
-const MOCK_PROPERTIES: Property[] = [
+const MOCK_LATEST: LatestProperty[] = [
   {
-    id: "1",
-    slug: "apartment-shebin",
-    title: "شقة سكنية فاخرة - تشطيب سوبر لوكس",
-    location: "شبين الكوم، حي الجامعة",
-    price: 2500000,
+    id: "l1",
+    slug: "modern-apartment",
+    title: "شقة مودرن بتصميم عصري",
+    location: "شبين الكوم، البر الشرقي",
+    price: 1850000,
     image: "/images/stitch/prop_living_room.jpg",
     transactionType: "sale",
-    badge: "مميز",
     rooms: 3,
-    bathrooms: 2,
-    area: 150,
+    area: 140,
   },
   {
-    id: "2",
-    slug: "office-shebin",
-    title: "مقر إداري مجهز بالكامل",
-    location: "شبين الكوم، شارع باريس",
-    price: 15000,
+    id: "l2",
+    slug: "office-space",
+    title: "مكتب إداري في موقع حيوي",
+    location: "شبين الكوم، شارع الجلاء",
+    price: 8000,
     priceSuffix: "ج.م / شهر",
     image: "/images/stitch/prop_office.jpg",
     transactionType: "rent",
-    rooms: 4,
-    bathrooms: 2,
-    area: 200,
+    rooms: 2,
+    area: 85,
   },
   {
-    id: "3",
-    slug: "villa-quweisna",
-    title: "فيلا مستقلة مع حديقة خاصة",
-    location: "قويسنا، حي الفيلات",
-    price: 5200000,
+    id: "l3",
+    slug: "twin-house",
+    title: "فيلا توين هاوس بتشطيب راقي",
+    location: "قويسنا، طريق مصر اسكندرية",
+    price: 4200000,
     image: "/images/stitch/prop_villa_garden.jpg",
     transactionType: "sale",
-    badge: "جديد",
-    rooms: 5,
-    bathrooms: 4,
-    area: 350,
+    badge: "لقطة",
+    rooms: 4,
+    area: 280,
   },
 ];
 
-function PropertyCard({ property }: { property: Property }) {
+function LatestCard({ property }: { property: LatestProperty }) {
   return (
     <Link
       href={`/properties/${property.slug}`}
@@ -84,18 +79,8 @@ function PropertyCard({ property }: { property: Property }) {
             {TRANSACTION_LABELS[property.transactionType]}
           </span>
           {property.badge && (
-            <span
-              className={`flex items-center gap-0.5 rounded-lg px-2.5 py-1 text-[10px] font-bold text-white shadow-sm sm:gap-1 sm:px-3 sm:py-1.5 sm:text-xs ${
-                property.badge === "مميز"
-                  ? "bg-destructive"
-                  : property.badge === "جديد"
-                    ? "bg-success"
-                    : "bg-destructive"
-              }`}
-            >
-              {property.badge === "مميز" && "★ "}
-              {property.badge === "جديد" && "★ "}
-              {property.badge}
+            <span className="bg-destructive flex items-center gap-0.5 rounded-lg px-2.5 py-1 text-[10px] font-bold text-white shadow-sm sm:gap-1 sm:px-3 sm:py-1.5 sm:text-xs">
+              ★ {property.badge}
             </span>
           )}
         </div>
@@ -122,12 +107,6 @@ function PropertyCard({ property }: { property: Property }) {
               {property.rooms} غرف
             </span>
           )}
-          {property.bathrooms && (
-            <span className="bg-surface-tertiary/50 flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 sm:px-3">
-              <Bath className="text-action size-4" />
-              {property.bathrooms} حمام
-            </span>
-          )}
           {property.area && (
             <span className="bg-surface-tertiary/50 flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 sm:px-3">
               <Square className="text-action size-4" />
@@ -140,24 +119,19 @@ function PropertyCard({ property }: { property: Property }) {
   );
 }
 
-export function FeaturedProperties() {
+export function LatestProperties() {
   const headerRef = useRevealOnScroll<HTMLDivElement>();
 
   return (
-    <section className="bg-surface-tertiary overflow-hidden py-[clamp(3rem,5vw,6rem)]">
+    <section className="bg-surface/50 overflow-hidden py-[clamp(3rem,5vw,6rem)]">
       <Container>
         <div
           ref={headerRef}
           className="reveal-up mb-[clamp(2rem,4vw,3rem)] flex flex-col items-start justify-between gap-4 sm:gap-6 md:flex-row md:items-end"
         >
-          <div>
-            <span className="text-action mb-2 block text-sm font-bold tracking-wider uppercase">
-              العناصر المميزة
-            </span>
-            <h2 className="text-primary font-headline-lg text-[clamp(1.5rem,2vw+0.5rem,2.25rem)] font-extrabold tracking-tight">
-              عقارات مختارة ليك
-            </h2>
-          </div>
+          <h2 className="text-primary font-headline-lg text-[clamp(1.5rem,2vw+0.5rem,2.25rem)] font-extrabold tracking-tight">
+            أحدث العقارات
+          </h2>
           <Link
             href="/properties"
             className="bg-action hover:bg-action-hover btn-interactive flex w-full items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-base font-bold text-white transition-colors md:w-auto"
@@ -167,8 +141,8 @@ export function FeaturedProperties() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-[clamp(1.5rem,2vw+0.5rem,2.5rem)] sm:grid-cols-2 lg:grid-cols-3">
-          {MOCK_PROPERTIES.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+          {MOCK_LATEST.map((property) => (
+            <LatestCard key={property.id} property={property} />
           ))}
         </div>
       </Container>
