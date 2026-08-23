@@ -1,20 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { Search, Phone } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { useRevealOnScroll } from "@/lib/hooks/use-reveal-on-scroll";
+import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 
 export function RequestPropertyCta() {
-  const sectionRef = useRevealOnScroll<HTMLDivElement>();
-
   return (
     <section className="mb-[clamp(3rem,5vw,6rem)] overflow-hidden py-[clamp(3rem,5vw,6rem)]">
       <Container>
-        <div
-          ref={sectionRef}
-          className="reveal-up border-border/20 bg-primary relative overflow-hidden rounded-3xl border p-[clamp(1.5rem,3vw+0.5rem,5rem)] shadow-xl"
-        >
+        <RevealOnScroll className="border-border/20 bg-primary relative overflow-hidden rounded-3xl border p-[clamp(1.5rem,3vw+0.5rem,5rem)] shadow-xl">
           <div className="absolute -end-16 -top-16 size-48 rounded-full bg-white/5 blur-3xl transition-transform duration-1000 hover:scale-150 md:-end-24 md:-top-24 md:size-64" />
           <div className="absolute -start-16 -bottom-16 size-48 rounded-full bg-white/5 blur-3xl transition-transform duration-1000 hover:scale-150 md:-start-24 md:-bottom-24 md:size-64" />
 
@@ -43,7 +36,7 @@ export function RequestPropertyCta() {
               </Link>
             </div>
           </div>
-        </div>
+        </RevealOnScroll>
       </Container>
     </section>
   );

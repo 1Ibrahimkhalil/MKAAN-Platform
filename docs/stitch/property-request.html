@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar" style="width: 1280px; height: 1382px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MKAAN - اطلب عقار</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-tint": "#515f78",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "secondary": "#0058be",
+                        "surface-container": "#eceef0",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary": "#000000",
+                        "on-primary-container": "#76849f",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-primary-fixed-variant": "#39475f",
+                        "on-tertiary-container": "#75859d",
+                        "on-primary-fixed": "#0d1c32",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "on-surface-variant": "#44474d",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "inverse-surface": "#2d3133",
+                        "inverse-primary": "#b9c7e4",
+                        "surface-dim": "#d8dadc",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0d1c32",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c5c6cd",
+                        "primary": "#000000",
+                        "secondary-container": "#2170e4",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#75777e",
+                        "primary-fixed": "#d6e3ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-container": "#fefcff",
+                        "on-background": "#191c1e"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Montserrat", "IBM Plex Sans Arabic", "sans-serif"],
+                        "body-lg": ["Montserrat", "IBM Plex Sans Arabic", "sans-serif"],
+                        "headline-xl": ["Montserrat", "IBM Plex Sans Arabic", "sans-serif"],
+                        "label-md": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "headline-lg": ["Montserrat", "IBM Plex Sans Arabic", "sans-serif"],
+                        "headline-lg-mobile": ["Montserrat", "IBM Plex Sans Arabic", "sans-serif"],
+                        "headline-md": ["Montserrat", "IBM Plex Sans Arabic", "sans-serif"],
+                        "label-sm": ["IBM Plex Sans Arabic", "sans-serif"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; transform: translateY(10px); }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .radio-card input:checked + div {
+            border-color: theme('colors.secondary');
+            background-color: theme('colors.surface');
+            box-shadow: 0 4px 20px rgba(0, 88, 190, 0.1);
+        }
+        .radio-card input:checked + div .icon {
+            color: theme('colors.secondary');
+        }
+        .radio-card input:checked + div .text {
+            color: theme('colors.secondary');
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav aria-label="Main Navigation" class="bg-surface dark:bg-inverse-surface shadow-sm docked full-width top-0 sticky z-50 transition-all duration-300 w-full">
+</nav>
+<!-- Main Content -->
+<div class="w-full bg-surface border-b border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4">
+<nav aria-label="Breadcrumb" class="flex items-center text-label-md font-label-md text-on-surface-variant gap-2 overflow-x-auto whitespace-nowrap">
+<a class="hover:text-secondary transition-colors" href="#">الرئيسية</a>
+<span class="material-symbols-outlined text-sm opacity-60">arrow_back_ios_new</span>
+<a class="hover:text-secondary transition-colors" href="#">الخدمات</a>
+<span class="material-symbols-outlined text-sm opacity-60">arrow_back_ios_new</span>
+<span aria-current="page" class="text-on-surface font-semibold">اطلب عقار</span>
+</nav>
+</div>
+</div><section class="w-full relative py-24 text-on-primary" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd0rb72hVm0v0MPZcR4VpFksQaRV-qUBnnu7tGk95DpOl0-CfZq2c2HQ-UhPmpeS6q13yqMHiQwe9x-W1AtPBcLzBB6TsN9F1c9qbjP5x3cHL6nD2X65hZc_k42EP2utItXSwqgb3lpfht07uL_gCDQ7-iXRjWT56A799vo6xR6hotq4TliDX6Cs-98iCBvqDFR9xEsXfIcOQE_7m1msyZ5imkERHa_jACl5vKihqPsdxtlkhxV0uw'); background-size: cover; background-position: center; background-repeat: no-repeat;"><div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col gap-stack-lg"><div class="max-w-2xl mx-auto text-center flex flex-col gap-stack-sm"><h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg tracking-tight text-white">مواصفاتك عندنا.. اطلب عقارك دلوقتي وهنجيبهولك لحد عندك</h1><p class="text-body-lg font-body-lg text-white">متشيلش هم التدوير، فريق MKAAN هيقلب لك الدنيا عشان يوصلك للعقار اللي بتحلم بيه في أسرع وقت وأحسن سعر.</p></div></div></section><main class="flex-grow w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-stack-lg flex flex-col gap-stack-lg">
+<!-- Breadcrumb -->
+<!-- Intro -->
+<!-- Request Form Container -->
+<section class="fade-in delay-200 bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(10,25,47,0.05)] border border-outline-variant/30 p-margin-mobile md:p-stack-lg relative overflow-hidden"><!-- Decorative accent -->
+<div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-secondary to-tertiary-fixed"></div>
+<form action="#" class="flex flex-col gap-stack-lg" method="POST">
+<!-- Section 1: Transaction & Basic Info -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary">info</span>
+<h2 class="text-headline-md font-headline-md text-primary">المعلومات الأساسية</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Transaction Type Tiles -->
+<fieldset class="flex flex-col gap-3 md:col-span-2">
+<legend class="text-label-md font-label-md text-on-surface-variant mb-1">نوع المعاملة</legend>
+<div class="grid grid-cols-2 gap-4">
+<label class="radio-card cursor-pointer group">
+<input checked="" class="peer sr-only" name="transaction_type" type="radio" value="buy"/>
+<div class="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-outline-variant transition-all duration-300 h-32 group-hover:border-secondary/30 peer-checked:border-secondary peer-checked:bg-secondary/5">
+<span class="material-symbols-outlined text-4xl mb-2 icon text-on-surface-variant transition-colors" style='font-variation-settings: "FILL" 1;'>key</span>
+<span class="text-label-md font-label-md text text-on-surface-variant text-lg font-bold">شراء</span>
+</div>
+</label>
+<label class="radio-card cursor-pointer group">
+<input class="peer sr-only" name="transaction_type" type="radio" value="rent"/>
+<div class="flex flex-col items-center justify-center p-6 rounded-xl border-2 border-outline-variant transition-all duration-300 h-32 group-hover:border-secondary/30 peer-checked:border-secondary peer-checked:bg-secondary/5">
+<span class="material-symbols-outlined text-4xl mb-2 icon text-on-surface-variant transition-colors">calendar_month</span>
+<span class="text-label-md font-label-md text text-on-surface-variant text-lg font-bold">إيجار</span>
+</div>
+</label>
+</div>
+</fieldset>
+<!-- Location -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="location">المنطقة المفضلة</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">location_on</span>
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg pr-12 pl-10 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" id="location" name="location">
+<option disabled="" selected="" value="">اختر المنطقة...</option>
+<option value="shibin">شبين الكوم</option>
+<option value="quesna">قويسنا</option>
+<option value="bagour">الباجور</option>
+<option value="minuf">منوف</option>
+<option value="tala">تلا</option>
+<option value="ashmoun">أشمون</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Classification -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="classification">التصنيف</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">category</span>
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg pr-12 pl-10 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" id="classification" name="classification">
+<option disabled="" selected="" value="">اختر التصنيف...</option>
+<option value="residential">سكني</option>
+<option value="commercial">تجاري</option>
+<option value="administrative">إداري</option>
+<option value="medical">طبي</option>
+<option value="land">أرض</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant/20 my-2"/>
+<!-- Section 2: Property Details -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary">home_work</span>
+<h2 class="text-headline-md font-headline-md text-primary">تفاصيل العقار</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="property_type">نوع العقار</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg px-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" id="property_type" name="property_type">
+<option value="apartment">شقة</option>
+<option value="house">بيت</option>
+<option value="villa">فيلا</option>
+<option value="duplex">دوبلكس</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-label-md font-label-md text-on-surface-variant flex justify-between">
+<span class="">الميزانية المتوقعة</span>
+<span class="text-label-sm text-outline">(جنيه مصري)</span>
+</label>
+<div class="flex items-center gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm">payments</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg pr-10 pl-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" placeholder="من" type="number"/>
+</div>
+<span class="text-outline font-bold">-</span>
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm">payments</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg pr-10 pl-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" placeholder="إلى" type="number"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="area">المساحة (متر مربع)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">square_foot</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg pr-10 pl-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" id="area" placeholder="الحد الأدنى" type="number"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="finishing">حالة التشطيب</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg px-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" id="finishing">
+<option value="any">أي حالة</option>
+<option value="super_lux">سوبر لوكس</option>
+<option value="lux">لوكس</option>
+<option value="semi">نصف تشطيب</option>
+<option value="red_brick">طوب أحمر</option>
+</select>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 justify-center pt-6">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary transition-colors" type="checkbox"/>
+<span class="text-body-md font-body-md text-on-surface group-hover:text-secondary transition-colors">مفروش؟</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="details">تفاصيل إضافية</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors resize-y" id="details" placeholder="اكتب أي متطلبات خاصة (مثال: قريب من المدارس، دور أرضي، إلخ...)" rows="3"></textarea>
+</div>
+</div>
+<hr class="border-outline-variant/20 my-2"/>
+<!-- Section 3: Contact Information -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary">contact_mail</span>
+<h2 class="text-headline-md font-headline-md text-primary">بيانات التواصل</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="name">الاسم بالكامل</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">person</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg pr-10 pl-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors" id="name" placeholder="أدخل اسمك" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface-variant" for="phone">رقم الموبايل</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">call</span>
+<input class="w-full bg-surface border border-outline-variant rounded-lg pr-10 pl-4 py-3 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors text-right" dir="ltr" id="phone" placeholder="01X XXXX XXXX" required="" type="tel"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-8 flex justify-center">
+<button class="bg-secondary text-on-secondary hover:bg-secondary-container px-12 py-4 rounded-xl text-headline-md font-headline-md font-bold shadow-lg shadow-secondary/20 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 w-full md:w-auto flex items-center justify-center gap-3" type="submit">
+<span class="">اطلب عقارك الآن</span>
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</form></section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary-container dark:bg-tertiary-container w-full rounded-t-xl mt-auto">
+<!-- Copyright -->
+<div class="border-t border-on-primary-container/10 w-full">
+</div>
+</footer>
+</body></html>

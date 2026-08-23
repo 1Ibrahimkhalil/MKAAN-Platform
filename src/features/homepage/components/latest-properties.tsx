@@ -1,10 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, BedDouble, Square, ArrowLeft } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { useRevealOnScroll } from "@/lib/hooks/use-reveal-on-scroll";
+import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 import { formatPrice } from "@/lib/utils";
 import { TRANSACTION_LABELS, CURRENCY_SYMBOL } from "@/config";
 
@@ -25,7 +23,7 @@ interface LatestProperty {
 const MOCK_LATEST: LatestProperty[] = [
   {
     id: "l1",
-    slug: "modern-apartment",
+    slug: "apartment-cairo-manial",
     title: "شقة مودرن بتصميم عصري",
     location: "شبين الكوم، البر الشرقي",
     price: 1850000,
@@ -36,7 +34,7 @@ const MOCK_LATEST: LatestProperty[] = [
   },
   {
     id: "l2",
-    slug: "office-space",
+    slug: "clinic-mansoura",
     title: "مكتب إداري في موقع حيوي",
     location: "شبين الكوم، شارع الجلاء",
     price: 8000,
@@ -48,7 +46,7 @@ const MOCK_LATEST: LatestProperty[] = [
   },
   {
     id: "l3",
-    slug: "twin-house",
+    slug: "villa-6october-modern",
     title: "فيلا توين هاوس بتشطيب راقي",
     location: "قويسنا، طريق مصر اسكندرية",
     price: 4200000,
@@ -120,15 +118,10 @@ function LatestCard({ property }: { property: LatestProperty }) {
 }
 
 export function LatestProperties() {
-  const headerRef = useRevealOnScroll<HTMLDivElement>();
-
   return (
     <section className="bg-surface/50 overflow-hidden py-[clamp(3rem,5vw,6rem)]">
       <Container>
-        <div
-          ref={headerRef}
-          className="reveal-up mb-[clamp(2rem,4vw,3rem)] flex flex-col items-start justify-between gap-4 sm:gap-6 md:flex-row md:items-end"
-        >
+        <RevealOnScroll className="mb-[clamp(2rem,4vw,3rem)] flex flex-col items-start justify-between gap-4 sm:gap-6 md:flex-row md:items-end">
           <h2 className="text-primary font-headline-lg text-[clamp(1.5rem,2vw+0.5rem,2.25rem)] font-extrabold tracking-tight">
             أحدث العقارات
           </h2>
@@ -139,7 +132,7 @@ export function LatestProperties() {
             شوف كل العقارات
             <ArrowLeft className="size-5 rtl:rotate-180" />
           </Link>
-        </div>
+        </RevealOnScroll>
         <div className="grid grid-cols-1 gap-[clamp(1.5rem,2vw+0.5rem,2.5rem)] sm:grid-cols-2 lg:grid-cols-3">
           {MOCK_LATEST.map((property) => (
             <LatestCard key={property.id} property={property} />

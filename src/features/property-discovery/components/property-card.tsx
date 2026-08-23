@@ -1,20 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { cn, formatPrice } from "@/lib/utils";
-import { TRANSACTION_LABELS, CURRENCY_SYMBOL } from "@/config";
+import { cn } from "@/lib/utils";
+import type { PropertyCardData } from "../types/property";
 
-export interface PropertyCardData {
-  id: string;
-  slug: string;
-  title: string;
-  location: string;
-  price: number;
-  image: string;
-  category: string;
-  transactionType: "sale" | "rent";
-}
+export type { PropertyCardData };
 
 export function PropertyCard({
   property,
@@ -27,54 +16,66 @@ export function PropertyCard({
     <Link
       href={`/properties/${property.slug}`}
       className={cn(
-        "bg-surface-secondary group/card ring-border/50 hover:ring-action/30 flex flex-col overflow-hidden rounded-xl ring-1 transition-all hover:-translate-y-0.5 hover:shadow-lg",
+        "bg-surface-secondary group/card border-border/20 relative flex flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-300",
+        "hover:shadow-md",
         className,
       )}
     >
-      <div className="relative aspect-video overflow-hidden">
+      <div className="relative h-48 overflow-hidden">
         <Image
           src={property.image}
           alt={property.title}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="object-cover transition-transform duration-300 group-hover/card:scale-105"
         />
-        <div className="absolute end-2 top-2 flex gap-1.5">
-          <Badge
-            variant="secondary"
-            className="bg-surface-secondary/90 backdrop-blur-sm"
-          >
-            {property.category}
-          </Badge>
-          <Badge
-            variant={
-              property.transactionType === "sale" ? "default" : "outline"
-            }
+        <div className="absolute end-2 top-2 flex gap-1">
+          {property.featured && (
+            <span className="bg-primary text-primary-foreground rounded-full px-2 py-0.5 text-[10px]">
+              مميز
+            </span>
+          )}
+          <span
             className={cn(
-              "backdrop-blur-sm",
+              "rounded-full px-2 py-0.5 text-[10px]",
               property.transactionType === "sale"
-                ? "bg-action/90 text-white"
-                : "bg-surface-secondary/90",
+                ? "bg-action-container text-action-foreground"
+                : "bg-primary text-primary-foreground",
             )}
           >
-            {TRANSACTION_LABELS[property.transactionType]}
-          </Badge>
+            {property.transactionType === "sale" ? "للبيع" : "للإيجار"}
+          </span>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <p
-          className="font-numerals text-foreground text-lg font-bold"
-          dir="ltr"
-        >
-          {formatPrice(property.price)} {CURRENCY_SYMBOL}
-        </p>
-        <h3 className="text-foreground line-clamp-1 text-sm font-semibold">
+      <div className="p-4">
+        <h3 className="text-foreground mb-1 text-base font-bold">
           {property.title}
         </h3>
-        <div className="text-muted-foreground mt-auto flex items-center gap-1 text-xs">
-          <MapPin className="size-3 shrink-0" />
-          <span className="line-clamp-1">{property.location}</span>
+        <div className="text-action mb-3 text-sm font-bold" dir="ltr">
+          {property.price.toLocaleString("ar-EG")} ج.م
+        </div>
+        <div className="text-muted-foreground border-border/20 flex items-center justify-between border-t pt-3 text-sm">
+          {property.area != null && (
+            <div className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-sm">
+                straighten
+              </span>
+              {property.area} م²
+            </div>
+          )}
+          {property.rooms != null && property.rooms > 0 && (
+            <div className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-sm">bed</span>
+              {property.rooms}
+            </div>
+          )}
+          {property.bathrooms != null && property.bathrooms > 0 && (
+            <div className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-sm">bathtub</span>
+              {property.bathrooms}
+            </div>
+          )}
         </div>
       </div>
     </Link>
