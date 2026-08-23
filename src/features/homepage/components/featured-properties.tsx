@@ -1,10 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, BedDouble, Bath, Square, ArrowLeft } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { useRevealOnScroll } from "@/lib/hooks/use-reveal-on-scroll";
+import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 import { formatPrice } from "@/lib/utils";
 import { TRANSACTION_LABELS, CURRENCY_SYMBOL } from "@/config";
 
@@ -26,7 +24,7 @@ interface Property {
 const MOCK_PROPERTIES: Property[] = [
   {
     id: "1",
-    slug: "apartment-shebin",
+    slug: "apartment-shebin-luxury",
     title: "شقة سكنية فاخرة - تشطيب سوبر لوكس",
     location: "شبين الكوم، حي الجامعة",
     price: 2500000,
@@ -39,7 +37,7 @@ const MOCK_PROPERTIES: Property[] = [
   },
   {
     id: "2",
-    slug: "office-shebin",
+    slug: "office-shebin-downtown",
     title: "مقر إداري مجهز بالكامل",
     location: "شبين الكوم، شارع باريس",
     price: 15000,
@@ -52,7 +50,7 @@ const MOCK_PROPERTIES: Property[] = [
   },
   {
     id: "3",
-    slug: "villa-quweisna",
+    slug: "villa-quweisna-garden",
     title: "فيلا مستقلة مع حديقة خاصة",
     location: "قويسنا، حي الفيلات",
     price: 5200000,
@@ -141,15 +139,10 @@ function PropertyCard({ property }: { property: Property }) {
 }
 
 export function FeaturedProperties() {
-  const headerRef = useRevealOnScroll<HTMLDivElement>();
-
   return (
     <section className="bg-surface-tertiary overflow-hidden py-[clamp(3rem,5vw,6rem)]">
       <Container>
-        <div
-          ref={headerRef}
-          className="reveal-up mb-[clamp(2rem,4vw,3rem)] flex flex-col items-start justify-between gap-4 sm:gap-6 md:flex-row md:items-end"
-        >
+        <RevealOnScroll className="mb-[clamp(2rem,4vw,3rem)] flex flex-col items-start justify-between gap-4 sm:gap-6 md:flex-row md:items-end">
           <div>
             <span className="text-action mb-2 block text-sm font-bold tracking-wider uppercase">
               العناصر المميزة
@@ -165,7 +158,7 @@ export function FeaturedProperties() {
             شوف كل العقارات
             <ArrowLeft className="size-5 rtl:rotate-180" />
           </Link>
-        </div>
+        </RevealOnScroll>
         <div className="grid grid-cols-1 gap-[clamp(1.5rem,2vw+0.5rem,2.5rem)] sm:grid-cols-2 lg:grid-cols-3">
           {MOCK_PROPERTIES.map((property) => (
             <PropertyCard key={property.id} property={property} />

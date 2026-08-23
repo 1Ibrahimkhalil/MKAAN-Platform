@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import {
   Camera,
@@ -10,7 +8,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { useRevealOnScroll } from "@/lib/hooks/use-reveal-on-scroll";
+import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 
 const features = [
   {
@@ -49,15 +47,10 @@ const features = [
 ];
 
 export function WhyMkaan() {
-  const sectionRef = useRevealOnScroll<HTMLDivElement>();
-
   return (
     <section className="overflow-hidden py-[clamp(3rem,5vw,6rem)]">
       <Container>
-        <div
-          ref={sectionRef}
-          className="reveal-up items-center gap-[clamp(2rem,3vw+0.5rem,4rem)] lg:grid lg:grid-cols-2"
-        >
+        <RevealOnScroll className="items-center gap-[clamp(2rem,3vw+0.5rem,4rem)] lg:grid lg:grid-cols-2">
           <div>
             <span className="text-action mb-2 block text-sm font-bold tracking-wider uppercase">
               لماذا نحن؟
@@ -111,7 +104,7 @@ export function WhyMkaan() {
               </div>
             </div>
           </div>
-        </div>
+        </RevealOnScroll>
       </Container>
     </section>
   );

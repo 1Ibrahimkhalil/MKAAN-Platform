@@ -20,9 +20,9 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItemData[] }) {
         <BreadcrumbItem>
           <BreadcrumbLink render={<Link href="/" />}>الرئيسية</BreadcrumbLink>
         </BreadcrumbItem>
-        {items.map((item) => (
+        {items.flatMap((item, index) => [
+          <BreadcrumbSeparator key={`sep-${index}`} />,
           <BreadcrumbItem key={item.label}>
-            <BreadcrumbSeparator />
             {item.href ? (
               <BreadcrumbLink render={<Link href={item.href} />}>
                 {item.label}
@@ -30,8 +30,8 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItemData[] }) {
             ) : (
               <BreadcrumbPage>{item.label}</BreadcrumbPage>
             )}
-          </BreadcrumbItem>
-        ))}
+          </BreadcrumbItem>,
+        ])}
       </BreadcrumbList>
     </Breadcrumb>
   );

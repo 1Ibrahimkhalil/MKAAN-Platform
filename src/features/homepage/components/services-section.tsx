@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { LandPlot, Paintbrush, Wrench, ArrowLeft } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { useRevealOnScroll } from "@/lib/hooks/use-reveal-on-scroll";
+import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 
 const services = [
   {
@@ -32,8 +30,6 @@ const services = [
 ];
 
 export function ServicesSection() {
-  const headerRef = useRevealOnScroll<HTMLDivElement>();
-
   return (
     <section className="from-surface-tertiary relative overflow-hidden bg-gradient-to-b to-white py-[clamp(3rem,5vw,6rem)]">
       <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
@@ -58,7 +54,7 @@ export function ServicesSection() {
       </div>
 
       <Container className="relative z-10">
-        <div ref={headerRef} className="reveal-up mb-12 text-center md:mb-16">
+        <RevealOnScroll className="mb-12 text-center md:mb-16">
           <span className="text-action mb-3 block text-sm font-bold tracking-widest uppercase">
             خدماتنا المتكاملة
           </span>
@@ -69,7 +65,7 @@ export function ServicesSection() {
             مش بس بنساعدك تلاقي العقار، بنوفر لك كمان الخدمات اللي تحتاجها بعد
             كده.
           </p>
-        </div>
+        </RevealOnScroll>
 
         <div className="grid grid-cols-1 gap-[clamp(1.25rem,1.5vw+0.5rem,2rem)] md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
