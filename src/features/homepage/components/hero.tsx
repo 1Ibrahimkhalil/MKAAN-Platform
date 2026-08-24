@@ -15,7 +15,7 @@ export function Hero() {
           sizes="100vw"
           className="scale-105 object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
       </div>
 
       <Container className="relative z-10 flex min-h-[inherit] flex-col items-center justify-end pb-[clamp(1.5rem,5vw,8rem)]">

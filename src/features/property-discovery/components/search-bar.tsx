@@ -40,7 +40,7 @@ export function SearchBar({
         />
         <Button
           type="submit"
-          className="bg-action hover:bg-action-hover shrink-0 cursor-pointer rounded-full px-12 py-4 text-[18px] font-bold text-white md:py-4"
+          className="bg-action hover:bg-action-hover shrink-0 cursor-pointer rounded-full px-6 py-2.5 text-sm font-bold text-white md:px-8 md:py-3 md:text-base"
         >
           بحث
         </Button>

@@ -86,12 +86,12 @@
   --secondary: #f7f9fb;
   --secondary-foreground: #0a192f;
   --muted: #f7f9fb;
-  --muted-foreground: #5a6b7f;
+  --muted-foreground: #4a5568;
   --accent: #f7f9fb;
   --accent-foreground: #0a192f;
   --destructive: #ff4b4b;
   --border: #e2e8f0;
-  --input: #e2e8f0;
+  --input: #cbd5e1;
   --ring: #0058be;
   --action: #0058be;
   --action-hover: #004395;
@@ -101,7 +101,7 @@
   --success-foreground: #ffffff;
   --warning: #f59e0b;
   --warning-foreground: #ffffff;
-  --info: #0058be;
+  --info: #0891b2;
   --info-foreground: #ffffff;
   --whatsapp: #25d366;
   --surface: #f8fafc;
@@ -153,7 +153,7 @@
   --success-foreground: #0a192f;
   --warning: #fbbf24;
   --warning-foreground: #0a192f;
-  --info: #2170e4;
+  --info: #22d3ee;
   --info-foreground: #ffffff;
   --whatsapp: #25d366;
   --surface: #0a192f;
@@ -247,11 +247,12 @@
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: color-mix(in srgb, var(--card) 95%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 20px 40px -10px rgba(10, 25, 47, 0.1);
+    border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+    box-shadow: 0 20px 40px -10px
+      color-mix(in srgb, var(--foreground) 10%, transparent);
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -272,7 +273,18 @@
   }
   .hover-lift:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 30px -10px
+      color-mix(in srgb, var(--foreground) 15%, transparent);
+  }
+
+  .shadow-card {
+    box-shadow: 0 8px 30px rgb(0, 0, 0, 0.04);
+  }
+  .shadow-card-hover {
     box-shadow: 0 15px 30px -10px rgba(10, 25, 47, 0.15);
+  }
+  .shadow-elevated {
+    box-shadow: 0px 4px 20px rgba(10, 25, 47, 0.05);
   }
 
   .nav-link-underline {
@@ -285,7 +297,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 2px;
-    background-color: #0058be;
+    background-color: var(--action);
     transform: scaleX(0);
     transform-origin: inline-end;
     transition: transform 0.3s ease;

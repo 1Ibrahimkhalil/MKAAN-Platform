@@ -74,7 +74,7 @@ export function ListPropertySteps() {
   return (
     <section
       id="list-property-section"
-      className="border-border/10 bg-surface-tertiary overflow-hidden border-y py-[clamp(3rem,5vw,6rem)]"
+      className="border-border/30 bg-surface-tertiary overflow-hidden border-y py-[clamp(3rem,5vw,6rem)]"
     >
       <Container>
         <div

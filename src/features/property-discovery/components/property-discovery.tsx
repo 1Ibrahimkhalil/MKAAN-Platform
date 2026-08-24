@@ -50,7 +50,7 @@ export function PropertyDiscovery() {
           </p>
           <Button
             variant="link"
-            onClick={() => {}}
+            onClick={() => window.location.reload()}
             className="text-action text-sm font-medium"
           >
             إعادة المحاولة

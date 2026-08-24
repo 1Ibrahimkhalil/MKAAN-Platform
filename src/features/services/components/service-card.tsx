@@ -22,7 +22,7 @@ export function ServiceCard({
   isPrimary = false,
 }: ServiceCardProps) {
   return (
-    <div className="flex flex-col rounded-lg border border-[#e0e3e5] bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+    <div className="border-border flex flex-col rounded-lg border bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="bg-surface-container relative mb-4 h-40 overflow-hidden rounded">
         <Image
           src={image}
@@ -34,11 +34,11 @@ export function ServiceCard({
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="montserrat text-2xl font-semibold text-black">
+        <h3 className="montserrat text-foreground text-2xl font-semibold">
           {title}
         </h3>
 
-        <p className="text-base leading-relaxed text-[#44474d]">
+        <p className="text-muted-foreground text-base leading-relaxed">
           {description}
         </p>
 
@@ -46,7 +46,7 @@ export function ServiceCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="bg-surface-container rounded-full border border-[#c5c6cd] px-3 py-1 text-xs font-semibold text-[#44474d]"
+              className="bg-surface-container border-border text-muted-foreground rounded-full border px-3 py-1 text-xs font-semibold"
             >
               {tag}
             </span>

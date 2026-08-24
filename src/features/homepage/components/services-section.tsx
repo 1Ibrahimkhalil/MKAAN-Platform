@@ -31,7 +31,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="from-surface-tertiary relative overflow-hidden bg-gradient-to-b to-white py-[clamp(3rem,5vw,6rem)]">
+    <section className="from-surface-container-low relative overflow-hidden bg-gradient-to-b to-white py-[clamp(3rem,5vw,6rem)]">
       <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
         <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -71,7 +71,7 @@ export function ServicesSection() {
           {services.map((service) => (
             <div
               key={service.href}
-              className="group border-border/20 hover:border-action/30 hover:shadow-action/10 flex flex-col items-center rounded-[2rem] border bg-white p-[clamp(1.5rem,2vw+0.5rem,2.5rem)] text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl md:rounded-[2.5rem]"
+              className="group border-border/30 hover:border-action/30 hover:shadow-action/10 bg-surface-secondary flex flex-col items-center rounded-[2rem] border p-[clamp(1.5rem,2vw+0.5rem,2.5rem)] text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl md:rounded-[2.5rem]"
             >
               <div className="bg-action/10 mb-6 flex size-16 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 md:mb-8 md:size-20 md:rounded-3xl">
                 <service.icon className="text-action size-10 md:text-5xl" />
