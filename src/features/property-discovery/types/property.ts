@@ -4,13 +4,17 @@ export interface PropertyCardData {
   title: string;
   location: string;
   price: number;
+  priceSuffix?: string;
   image: string;
   category: string;
   transactionType: "sale" | "rent";
   featured?: boolean;
+  badge?: "لقطة" | "جديد";
   rooms?: number;
   bathrooms?: number;
   area?: number;
+  floor?: number;
+  furnished?: boolean;
 }
 
 export interface PropertyDetail extends PropertyCardData {

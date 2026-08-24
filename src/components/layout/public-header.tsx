@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { MessageCircle, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +14,12 @@ import {
 import { NAV_LINKS } from "@/config";
 
 export function PublicHeader() {
+  const pathname = usePathname();
+
+  function isActive(href: string): boolean {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
   return (
     <nav className="border-border/20 sticky top-0 z-50 h-16 w-full border-b bg-white/90 shadow-sm backdrop-blur-xl transition-all duration-300">
       <div className="mx-auto flex h-full w-full items-center justify-between gap-4 px-4 md:px-6 lg:max-w-[1120px] lg:px-8 xl:max-w-[1280px]">
@@ -33,7 +40,7 @@ export function PublicHeader() {
               key={link.href}
               href={link.href}
               className={`nav-link-underline font-label-md text-base transition-colors ${
-                link.active
+                isActive(link.href)
                   ? "text-action font-bold"
                   : "text-muted-foreground hover:text-action font-medium"
               }`}
@@ -88,7 +95,7 @@ export function PublicHeader() {
                     key={link.href}
                     href={link.href}
                     className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                      link.active
+                      isActive(link.href)
                         ? "bg-action/10 text-action font-bold"
                         : "text-muted-foreground hover:bg-surface-tertiary hover:text-foreground"
                     }`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 import type { FieldDefinition } from "@/config/dynamic-fields";
 
 export function DynamicFilter({
@@ -47,12 +48,11 @@ export function DynamicFilter({
         <label className="text-foreground mb-2 flex items-center gap-2 text-sm font-medium">
           {field.label}
         </label>
-        <input
+        <Input
           type="number"
           placeholder={field.label}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="bg-surface-secondary border-border focus:border-action focus:ring-action text-foreground w-full rounded-md p-3 text-base outline-none focus:ring-1"
         />
       </div>
     );

@@ -1,6 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function SortControl({
   value,
@@ -23,17 +30,18 @@ export function SortControl({
       <label className="text-muted-foreground text-sm whitespace-nowrap">
         ترتيب حسب:
       </label>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="bg-surface-secondary border-border focus:border-action text-foreground rounded-md border p-2 text-sm font-medium outline-none"
-      >
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+      <Select value={value} onValueChange={(v) => onChange(v ?? "newest")}>
+        <SelectTrigger className="w-auto">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((opt) => (
+            <SelectItem key={opt.value} value={opt.value}>
+              {opt.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Search, MapPin, ArrowRightLeft, Building2, Tag } from "lucide-react";
 import {
   GOVERNORATES,
@@ -36,7 +37,7 @@ function HeroSelect({
       <Select defaultValue={defaultValue}>
         <SelectTrigger
           hideChevron
-          className="text-foreground border-border/30 hover:border-action focus:border-action focus:ring-action/20 data-[placeholder]:text-muted-foreground relative h-auto w-full cursor-pointer rounded-xl border bg-white/90 py-3 ps-9 pe-4 text-sm font-medium shadow-sm transition-colors hover:bg-white sm:py-4 sm:ps-10 sm:pe-5"
+          className="text-foreground hover:border-action focus:border-action focus:ring-action/20 data-[placeholder]:text-muted-foreground relative h-auto w-full cursor-pointer rounded-xl border bg-white/90 py-3 ps-9 pe-4 text-sm font-medium shadow-sm transition-colors hover:bg-white sm:py-4 sm:ps-10 sm:pe-5"
         >
           <Icon className="text-action pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 sm:start-4 sm:size-5" />
           <SelectValue />
@@ -45,7 +46,7 @@ function HeroSelect({
           side="bottom"
           sideOffset={4}
           align="start"
-          className="border-border/20 rounded-xl bg-white shadow-xl"
+          className="rounded-xl bg-white shadow-xl"
         >
           {options.map((opt) => (
             <SelectItem key={opt.value} value={opt.value}>
@@ -76,17 +77,19 @@ export function HeroSearchCard() {
         <HeroSelect icon={Tag} label="السعر" options={HERO_PRICES} />
       </div>
 
-      <div className="border-border/20 mt-2 flex flex-col items-center gap-3 border-t pt-[clamp(0.75rem,1.5vw,1.5rem)] sm:flex-row sm:justify-between">
+      <div className="border-border/40 mt-2 flex flex-col items-center gap-3 border-t pt-[clamp(0.75rem,1.5vw,1.5rem)] sm:flex-row sm:justify-between">
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
           <Button
-            type="button"
+            render={<Link href="/request-property" />}
+            nativeButton={false}
             variant="outline"
             className="btn-interactive w-full rounded-xl px-8 py-3 text-sm font-bold transition-all sm:w-auto"
           >
             اطلب عقار
           </Button>
           <Button
-            type="button"
+            render={<Link href="/list-property" />}
+            nativeButton={false}
             variant="outline"
             className="btn-interactive w-full rounded-xl px-8 py-3 text-sm font-bold transition-all sm:w-auto"
           >

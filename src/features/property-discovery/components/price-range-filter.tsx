@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 export function PriceRangeFilter({
   min,
@@ -19,19 +20,19 @@ export function PriceRangeFilter({
         السعر (جنيه)
       </label>
       <div className="flex gap-2">
-        <input
+        <Input
           type="number"
           placeholder="من"
           value={min}
           onChange={(e) => onChange(e.target.value, max)}
-          className="bg-surface-secondary border-border focus:border-action focus:ring-action text-foreground w-1/2 rounded-md p-3 text-base outline-none focus:ring-1"
+          className="w-1/2"
         />
-        <input
+        <Input
           type="number"
           placeholder="إلى"
           value={max}
           onChange={(e) => onChange(min, e.target.value)}
-          className="bg-surface-secondary border-border focus:border-action focus:ring-action text-foreground w-1/2 rounded-md p-3 text-base outline-none focus:ring-1"
+          className="w-1/2"
         />
       </div>
     </div>

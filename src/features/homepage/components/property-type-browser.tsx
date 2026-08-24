@@ -66,7 +66,7 @@ export function PropertyTypeBrowser() {
                 >
                   <Link
                     href={type.href}
-                    className="glass-card flex flex-col items-center gap-4 rounded-3xl border border-white/60 p-6 transition-all duration-300 hover:-translate-y-[5px] hover:shadow-[0_15px_30px_-10px_rgba(10,25,47,0.15)] md:p-8"
+                    className="glass-card border-border/40 hover:shadow-card-hover flex flex-col items-center gap-4 rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-[5px] md:p-8"
                   >
                     <div className="bg-action/10 group-hover:bg-action flex size-14 items-center justify-center rounded-2xl transition-colors duration-300 md:size-16 md:rounded-3xl">
                       <type.icon className="text-action size-8 transition-transform group-hover:scale-110 group-hover:text-white md:text-4xl" />
@@ -78,9 +78,9 @@ export function PropertyTypeBrowser() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="border-border/20 text-action hover:bg-action hover:text-action-foreground absolute inset-s-0 top-0 my-auto hidden size-12 rounded-full border bg-white shadow-xl transition-all md:flex" />
+            <CarouselPrevious className="border-border/40 text-action hover:bg-action hover:text-action-foreground absolute inset-s-0 top-0 my-auto hidden size-12 rounded-full border bg-white shadow-xl transition-all md:flex" />
 
-            <CarouselNext className="border-border/20 text-action hover:bg-action hover:text-action-foreground absolute inset-e-0 my-auto hidden size-12 rounded-full border bg-white shadow-xl transition-all md:flex" />
+            <CarouselNext className="border-border/40 text-action hover:bg-action hover:text-action-foreground absolute inset-e-0 my-auto hidden size-12 rounded-full border bg-white shadow-xl transition-all md:flex" />
           </Carousel>
         </div>
       </Container>

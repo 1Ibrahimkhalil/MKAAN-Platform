@@ -1,7 +1,7 @@
 import { ROUTES } from "./routes";
 
 export const NAV_LINKS = [
-  { href: ROUTES.HOME, label: "الرئيسية", active: true },
+  { href: ROUTES.HOME, label: "الرئيسية" },
   { href: ROUTES.PROPERTIES, label: "العقارات" },
   { href: ROUTES.SERVICES, label: "الخدمات" },
   { href: ROUTES.ABOUT, label: "عن مكان" },

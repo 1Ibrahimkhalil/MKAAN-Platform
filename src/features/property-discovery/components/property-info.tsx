@@ -21,7 +21,7 @@ export function PropertyInfo({ property }: { property: PropertyDetail }) {
             {property.dynamicFields.map((field) => (
               <div
                 key={field.fieldId}
-                className="bg-surface-secondary border-border/20 rounded-lg border p-4 shadow-[0px_4px_20px_rgba(10,25,47,0.02)]"
+                className="bg-surface-secondary border-border/30 shadow-elevated rounded-lg border p-4"
               >
                 <div className="text-muted-foreground mb-1 text-xs">
                   {field.label}

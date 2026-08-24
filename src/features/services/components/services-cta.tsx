@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 
@@ -13,12 +14,12 @@ export function ServicesCTA() {
             قولنا محتاج إيه، وفريق MKAAN هيتواصل معاك ويحدد معاك الخطوات
             المناسبة.
           </p>
-          <a
+          <Link
             href="/contact"
             className="text-action mt-2 rounded-lg bg-white px-8 py-3 text-sm font-medium shadow-md transition-colors hover:bg-white/90"
           >
             اطلب خدمة
-          </a>
+          </Link>
         </RevealOnScroll>
       </Container>
     </section>

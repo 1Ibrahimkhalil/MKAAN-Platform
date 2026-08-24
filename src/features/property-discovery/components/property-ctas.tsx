@@ -15,7 +15,7 @@ export function PropertyCTAs({
   return (
     <div
       className={cn(
-        "bg-surface-secondary border-border/20 sticky top-24 rounded-xl border p-6 shadow-[0px_4px_20px_rgba(10,25,47,0.05)]",
+        "bg-surface-secondary border-border/30 shadow-elevated sticky top-24 rounded-xl border p-6",
         className,
       )}
     >
@@ -47,7 +47,7 @@ export function PropertyCTAs({
                 {property.area} م²
               </span>
             </div>
-            <div className="bg-border/30 h-8 w-px" />
+            <div className="bg-border/50 h-8 w-px" />
           </>
         )}
         {property.rooms != null && property.rooms > 0 && (
@@ -60,7 +60,7 @@ export function PropertyCTAs({
                 {property.rooms} غرف
               </span>
             </div>
-            <div className="bg-border/30 h-8 w-px" />
+            <div className="bg-border/50 h-8 w-px" />
           </>
         )}
         {property.bathrooms != null && property.bathrooms > 0 && (
@@ -97,7 +97,7 @@ export function PropertyCTAs({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-green-50 py-2 text-sm text-green-700 transition-colors hover:bg-green-100"
+            className="bg-whatsapp/10 text-whatsapp hover:bg-whatsapp/20 flex flex-1 items-center justify-center gap-2 rounded-lg py-2 text-sm transition-colors"
           >
             واتساب
           </a>

@@ -93,7 +93,7 @@ export function WhyMkaan() {
               height={600}
               className="relative z-10 rounded-3xl border border-white/50 shadow-2xl transition-transform duration-500 hover:-translate-y-2"
             />
-            <div className="border-border/10 absolute -end-4 -bottom-4 z-20 flex animate-bounce items-center gap-3 rounded-2xl border bg-white p-4 shadow-xl md:-end-6 md:-bottom-6 md:p-5">
+            <div className="border-border/40 absolute -end-4 -bottom-4 z-20 flex animate-bounce items-center gap-3 rounded-2xl border bg-white p-4 shadow-xl md:-end-6 md:-bottom-6 md:p-5">
               <div className="text-action text-2xl font-extrabold md:text-3xl">
                 100%
               </div>

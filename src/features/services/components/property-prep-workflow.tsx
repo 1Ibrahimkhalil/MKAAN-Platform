@@ -13,7 +13,7 @@ const steps = [
 
 export function PropertyPrepWorkflow() {
   return (
-    <div className="bg-surface-tertiary mt-3 rounded border border-[#e0e3e5] p-3">
+    <div className="bg-surface-tertiary border-border mt-3 rounded border p-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         {steps.map((step, index) => (
           <div key={step.label} className="flex items-center">
@@ -21,12 +21,12 @@ export function PropertyPrepWorkflow() {
               <span className="material-symbols-outlined text-action">
                 {step.icon}
               </span>
-              <span className="w-16 text-center text-xs font-semibold text-black">
+              <span className="text-foreground w-16 text-center text-xs font-semibold">
                 {step.label}
               </span>
             </div>
             {index < steps.length - 1 && (
-              <span className="material-symbols-outlined mx-1 text-sm text-[#c5c6cd]">
+              <span className="material-symbols-outlined text-muted-foreground mx-1 text-sm">
                 arrow_back
               </span>
             )}
