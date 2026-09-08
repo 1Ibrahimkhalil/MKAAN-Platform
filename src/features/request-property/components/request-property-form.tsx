@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Container } from "@/components/layout/container";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,14 +15,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FormField } from "@/components/ui/form-field";
+import { FormError } from "@/components/ui/form-error";
 import { TransactionTypeTile } from "./transaction-type-tile";
+import { REQUEST_PROPERTY_TRANSACTION_TYPES } from "../config";
 import {
-  REQUEST_PROPERTY_TRANSACTION_TYPES,
+  requestPropertySchema,
+  type RequestPropertyFormValues,
+} from "../config/schemas";
+import { GOVERNORATES } from "@/config/locations";
+import {
   CATEGORIES,
   FINISHING_STATUS,
   PROPERTY_TYPE_OPTIONS,
-} from "../config";
-import { GOVERNORATES } from "@/config/locations";
+} from "@/config/options";
 
 function SectionHeader({ icon, title }: { icon: string; title: string }) {
   return (
@@ -33,16 +40,34 @@ function SectionHeader({ icon, title }: { icon: string; title: string }) {
 }
 
 export function RequestPropertyForm() {
-  const [transactionType, setTransactionType] = useState("buy");
-  const [furnished, setFurnished] = useState(false);
-  const [location, setLocation] = useState("");
-  const [classification, setClassification] = useState("");
-  const [propertyType, setPropertyType] = useState("apartment");
-  const [finishing, setFinishing] = useState("any");
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RequestPropertyFormValues>({
+    resolver: zodResolver(requestPropertySchema),
+    defaultValues: {
+      transactionType: "buy",
+      location: "",
+      classification: "",
+      propertyType: "apartment",
+      budgetMin: "",
+      budgetMax: "",
+      area: "",
+      finishing: "any",
+      furnished: false,
+      details: "",
+      name: "",
+      phone: "",
+    },
+  });
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function onSubmit(data: RequestPropertyFormValues) {
+    void data;
   }
+
+  const budgetError = errors.budgetMin?.message ?? errors.budgetMax?.message;
 
   return (
     <Container className="py-8">
@@ -50,7 +75,8 @@ export function RequestPropertyForm() {
         <div className="from-action to-accent absolute top-0 right-0 left-0 h-1 bg-gradient-to-l" />
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
           className="flex flex-col gap-6 p-4 md:p-8"
         >
           {/* Section 1: Basic Info */}
@@ -63,60 +89,87 @@ export function RequestPropertyForm() {
                 <legend className="text-muted-foreground mb-1 text-sm font-medium">
                   نوع المعاملة
                 </legend>
-                <div className="grid grid-cols-2 gap-4">
-                  {REQUEST_PROPERTY_TRANSACTION_TYPES.map((t) => (
-                    <TransactionTypeTile
-                      key={t.value}
-                      name="transaction_type"
-                      value={t.value}
-                      label={t.label}
-                      icon={t.icon}
-                      checked={transactionType === t.value}
-                      onChange={setTransactionType}
-                    />
-                  ))}
-                </div>
+                <Controller
+                  control={control}
+                  name="transactionType"
+                  render={({ field }) => (
+                    <div className="grid grid-cols-2 gap-4">
+                      {REQUEST_PROPERTY_TRANSACTION_TYPES.map((t) => (
+                        <TransactionTypeTile
+                          key={t.value}
+                          name={field.name}
+                          value={t.value}
+                          label={t.label}
+                          icon={t.icon}
+                          checked={field.value === t.value}
+                          onChange={field.onChange}
+                        />
+                      ))}
+                    </div>
+                  )}
+                />
               </fieldset>
 
               {/* Location */}
-              <div className="flex flex-col gap-1.5">
-                <Label>المنطقة المفضلة</Label>
-                <Select
-                  value={location}
-                  onValueChange={(v) => setLocation(v ?? "")}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر المنطقة..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {GOVERNORATES.map((g) => (
-                      <SelectItem key={g.value} value={g.value}>
-                        {g.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <FormField
+                label="المنطقة المفضلة"
+                error={errors.location?.message}
+              >
+                <Controller
+                  control={control}
+                  name="location"
+                  render={({ field }) => (
+                    <Select
+                      value={field.value}
+                      onValueChange={(v) => field.onChange(v ?? "")}
+                      options={GOVERNORATES}
+                    >
+                      <SelectTrigger
+                        className="w-full"
+                        aria-invalid={!!errors.location}
+                      >
+                        <SelectValue placeholder="اختر المنطقة..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {GOVERNORATES.map((g) => (
+                          <SelectItem key={g.value} value={g.value}>
+                            {g.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </FormField>
 
               {/* Classification */}
-              <div className="flex flex-col gap-1.5">
-                <Label>التصنيف</Label>
-                <Select
-                  value={classification}
-                  onValueChange={(v) => setClassification(v ?? "")}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر التصنيف..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {CATEGORIES.map((c) => (
-                      <SelectItem key={c.value} value={c.value}>
-                        {c.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <FormField label="التصنيف" error={errors.classification?.message}>
+                <Controller
+                  control={control}
+                  name="classification"
+                  render={({ field }) => (
+                    <Select
+                      value={field.value}
+                      onValueChange={(v) => field.onChange(v ?? "")}
+                      options={CATEGORIES}
+                    >
+                      <SelectTrigger
+                        className="w-full"
+                        aria-invalid={!!errors.classification}
+                      >
+                        <SelectValue placeholder="اختر التصنيف..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CATEGORIES.map((c) => (
+                          <SelectItem key={c.value} value={c.value}>
+                            {c.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </FormField>
             </div>
           </div>
 
@@ -128,28 +181,40 @@ export function RequestPropertyForm() {
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {/* Property Type */}
-              <div className="flex flex-col gap-1.5">
-                <Label>نوع العقار</Label>
-                <Select
-                  value={propertyType}
-                  onValueChange={(v) => setPropertyType(v ?? "apartment")}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {PROPERTY_TYPE_OPTIONS.map((p) => (
-                      <SelectItem key={p.value} value={p.value}>
-                        {p.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <FormField
+                label="نوع العقار"
+                error={errors.propertyType?.message}
+              >
+                <Controller
+                  control={control}
+                  name="propertyType"
+                  render={({ field }) => (
+                    <Select
+                      value={field.value}
+                      onValueChange={(v) => field.onChange(v ?? "apartment")}
+                      options={PROPERTY_TYPE_OPTIONS}
+                    >
+                      <SelectTrigger
+                        className="w-full"
+                        aria-invalid={!!errors.propertyType}
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {PROPERTY_TYPE_OPTIONS.map((p) => (
+                          <SelectItem key={p.value} value={p.value}>
+                            {p.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </FormField>
 
               {/* Budget Range */}
               <div className="flex flex-col gap-1.5 md:col-span-2">
-                <Label className="justify-between">
+                <Label htmlFor="budgetMin" className="justify-between">
                   <span>الميزانية المتوقعة</span>
                   <span className="text-muted-foreground text-xs">
                     (جنيه مصري)
@@ -162,9 +227,14 @@ export function RequestPropertyForm() {
                     </span>
                     <Input
                       type="number"
-                      name="budget_min"
+                      id="budgetMin"
                       placeholder="من"
+                      aria-invalid={!!errors.budgetMin}
+                      aria-describedby={
+                        errors.budgetMin ? "budgetMin-error" : undefined
+                      }
                       className="h-auto py-2.5 pr-9 pl-3"
+                      {...register("budgetMin")}
                     />
                   </div>
                   <span className="text-muted-foreground font-bold">-</span>
@@ -174,17 +244,28 @@ export function RequestPropertyForm() {
                     </span>
                     <Input
                       type="number"
-                      name="budget_max"
+                      id="budgetMax"
                       placeholder="إلى"
+                      aria-invalid={!!errors.budgetMax}
+                      aria-describedby={
+                        errors.budgetMax ? "budgetMax-error" : undefined
+                      }
                       className="h-auto py-2.5 pr-9 pl-3"
+                      {...register("budgetMax")}
                     />
                   </div>
                 </div>
+                {budgetError && (
+                  <FormError message={budgetError} className="mt-1" />
+                )}
               </div>
 
               {/* Area */}
-              <div className="flex flex-col gap-1.5">
-                <Label htmlFor="area">المساحة (متر مربع)</Label>
+              <FormField
+                label="المساحة (متر مربع)"
+                htmlFor="area"
+                error={errors.area?.message}
+              >
                 <div className="relative">
                   <span className="material-symbols-outlined text-muted-foreground pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                     square_foot
@@ -192,60 +273,82 @@ export function RequestPropertyForm() {
                   <Input
                     type="number"
                     id="area"
-                    name="area"
                     placeholder="الحد الأدنى"
+                    aria-invalid={!!errors.area}
+                    aria-describedby={errors.area ? "area-error" : undefined}
                     className="h-auto py-2.5 pr-9 pl-3"
+                    {...register("area")}
                   />
                 </div>
-              </div>
+              </FormField>
 
               {/* Finishing Status */}
-              <div className="flex flex-col gap-1.5">
-                <Label>حالة التشطيب</Label>
-                <Select
-                  value={finishing}
-                  onValueChange={(v) => setFinishing(v ?? "any")}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {FINISHING_STATUS.map((f) => (
-                      <SelectItem key={f.value} value={f.value}>
-                        {f.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <FormField label="حالة التشطيب" error={errors.finishing?.message}>
+                <Controller
+                  control={control}
+                  name="finishing"
+                  render={({ field }) => (
+                    <Select
+                      value={field.value}
+                      onValueChange={(v) => field.onChange(v ?? "any")}
+                      options={FINISHING_STATUS}
+                    >
+                      <SelectTrigger
+                        className="w-full"
+                        aria-invalid={!!errors.finishing}
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {FINISHING_STATUS.map((f) => (
+                          <SelectItem key={f.value} value={f.value}>
+                            {f.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              </FormField>
 
               {/* Furnished Checkbox */}
               <div className="flex items-center pt-6">
-                <label className="group flex cursor-pointer items-center gap-3">
-                  <Checkbox
-                    checked={furnished}
-                    onCheckedChange={(checked) =>
-                      setFurnished(checked === true)
-                    }
-                  />
-                  <span className="text-foreground group-hover:text-action text-sm transition-colors">
-                    مفروش؟
-                  </span>
-                </label>
+                <Controller
+                  control={control}
+                  name="furnished"
+                  render={({ field }) => (
+                    <label className="group flex cursor-pointer items-center gap-3">
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={(checked) =>
+                          field.onChange(checked === true)
+                        }
+                      />
+                      <span className="text-foreground group-hover:text-action text-sm transition-colors">
+                        مفروش؟
+                      </span>
+                    </label>
+                  )}
+                />
               </div>
             </div>
 
             {/* Additional Details */}
-            <div className="flex flex-col gap-1.5">
-              <Label htmlFor="details">تفاصيل إضافية</Label>
+            <FormField
+              label="تفاصيل إضافية"
+              htmlFor="details"
+              error={errors.details?.message}
+            >
               <Textarea
                 id="details"
-                name="details"
                 placeholder="اكتب أي متطلبات خاصة (مثال: قريب من المدارس، دور أرضي، إلخ...)"
                 rows={3}
+                aria-invalid={!!errors.details}
+                aria-describedby={errors.details ? "details-error" : undefined}
                 className="resize-y"
+                {...register("details")}
               />
-            </div>
+            </FormField>
           </div>
 
           <hr className="border-border" />
@@ -256,8 +359,12 @@ export function RequestPropertyForm() {
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {/* Full Name */}
-              <div className="flex flex-col gap-1.5">
-                <Label htmlFor="name">الاسم بالكامل</Label>
+              <FormField
+                label="الاسم بالكامل"
+                htmlFor="name"
+                required
+                error={errors.name?.message}
+              >
                 <div className="relative">
                   <span className="material-symbols-outlined text-muted-foreground pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                     person
@@ -265,17 +372,23 @@ export function RequestPropertyForm() {
                   <Input
                     type="text"
                     id="name"
-                    name="name"
                     placeholder="أدخل اسمك"
-                    required
+                    aria-required="true"
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
                     className="h-auto py-2.5 pr-9 pl-3"
+                    {...register("name")}
                   />
                 </div>
-              </div>
+              </FormField>
 
               {/* Phone */}
-              <div className="flex flex-col gap-1.5">
-                <Label htmlFor="phone">رقم الموبايل</Label>
+              <FormField
+                label="رقم الموبايل"
+                htmlFor="phone"
+                required
+                error={errors.phone?.message}
+              >
                 <div className="relative">
                   <span className="material-symbols-outlined text-muted-foreground pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                     call
@@ -283,14 +396,17 @@ export function RequestPropertyForm() {
                   <Input
                     type="tel"
                     id="phone"
-                    name="phone"
                     placeholder="01X XXXX XXXX"
-                    required
+                    autoComplete="tel"
+                    aria-required="true"
+                    aria-invalid={!!errors.phone}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                     dir="ltr"
                     className="h-auto py-2.5 pr-9 pl-3 text-left"
+                    {...register("phone")}
                   />
                 </div>
-              </div>
+              </FormField>
             </div>
           </div>
 
