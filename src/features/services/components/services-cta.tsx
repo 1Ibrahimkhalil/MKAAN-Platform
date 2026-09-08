@@ -15,7 +15,7 @@ export function ServicesCTA() {
             المناسبة.
           </p>
           <Link
-            href="/contact"
+            href="/services"
             className="text-action mt-2 rounded-lg bg-white px-8 py-3 text-sm font-medium shadow-md transition-colors hover:bg-white/90"
           >
             اطلب خدمة
