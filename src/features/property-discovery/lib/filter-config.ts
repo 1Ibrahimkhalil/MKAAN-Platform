@@ -1,4 +1,5 @@
 import { GOVERNORATES } from "@/config";
+import { TRANSACTION_OPTIONS } from "@/config/options";
 import { getCategoryFieldIds } from "@/config/dynamic-fields";
 import type { FilterState } from "../types/property";
 
@@ -9,10 +10,7 @@ export const CATEGORY_OPTIONS = [
   { value: "أرض", label: "أرض" },
 ] as const;
 
-export const TRANSACTION_OPTIONS = [
-  { value: "sale", label: "للبيع" },
-  { value: "rent", label: "للإيجار" },
-] as const;
+export { TRANSACTION_OPTIONS };
 
 export const LOCATION_OPTIONS = GOVERNORATES.map((g) => ({
   value: g.value,

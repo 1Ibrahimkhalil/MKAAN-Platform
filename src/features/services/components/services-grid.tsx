@@ -38,7 +38,7 @@ const services = [
       "تحسين الشكل العام للعقار",
     ],
     ctaLabel: "جهز عقارك",
-    ctaHref: "/contact",
+    ctaHref: "/services/prep",
     isPrimary: true,
   },
 ];

@@ -6,7 +6,34 @@ import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon, CheckIcon, ChevronUpIcon } from "lucide-react";
 
-const Select = SelectPrimitive.Root;
+export interface SelectOption {
+  value: string;
+  label: string;
+}
+
+function Select<Value, Multiple extends boolean | undefined = false>({
+  options,
+  itemToStringLabel,
+  ...props
+}: SelectPrimitive.Root.Props<Value, Multiple> & {
+  options?: readonly SelectOption[];
+  itemToStringLabel?: (itemValue: Value) => string;
+}) {
+  const defaultItemToStringLabel = (itemValue: Value) => {
+    if (typeof itemValue !== "string") return String(itemValue);
+    return (
+      options?.find((option) => option.value === itemValue)?.label ?? itemValue
+    );
+  };
+
+  return (
+    <SelectPrimitive.Root
+      items={options}
+      itemToStringLabel={itemToStringLabel ?? defaultItemToStringLabel}
+      {...props}
+    />
+  );
+}
 
 function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
   return (
