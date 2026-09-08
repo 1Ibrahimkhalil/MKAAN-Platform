@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
-import { PropertyGallery } from "@/features/property-discovery/components/property-gallery";
-import { PropertyInfo } from "@/features/property-discovery/components/property-info";
-import { PropertyCTAs } from "@/features/property-discovery/components/property-ctas";
-import { PropertyCTASection } from "@/features/property-discovery/components/property-cta-section";
-import { SimilarProperties } from "@/features/property-discovery/components/similar-properties";
-import { MOCK_PROPERTIES } from "@/features/property-discovery/lib/mock-data";
-import type { PropertyDetail } from "@/features/property-discovery/types/property";
+import { PropertyGallery } from "@/features/properties/components/property-gallery";
+import { PropertyInfo } from "@/features/properties/components/property-info";
+import { PropertyCTAs } from "@/features/properties/components/property-ctas";
+import { PropertyCTASection } from "@/features/properties/components/property-cta-section";
+import { SimilarProperties } from "@/features/properties/components/similar-properties";
+import { MOCK_PROPERTIES } from "@/features/properties/lib/mock-data";
+import type { PropertyDetail } from "@/features/properties/types/property";
 
 function getPropertyBySlug(slug: string): PropertyDetail | null {
   const base = MOCK_PROPERTIES.find((p) => p.slug === slug);

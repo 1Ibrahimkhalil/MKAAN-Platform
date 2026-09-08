@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { RequestPropertyHero } from "@/features/request-property/components/request-property-hero";
-import { RequestPropertyForm } from "@/features/request-property/components/request-property-form";
+import { RequestPropertyHero } from "@/features/leads/property-request/components/request-property-hero";
+import { RequestPropertyForm } from "@/features/leads/property-request/components/request-property-form";
 
 export const metadata: Metadata = {
   title: "اطلب عقار | مكان",

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ListPropertyHero } from "@/features/list-property/components/list-property-hero";
-import { ListPropertySteps } from "@/features/list-property/components/list-property-steps";
-import { ListPropertyForm } from "@/features/list-property/components/list-property-form";
-import { ListPropertySidebar } from "@/features/list-property/components/list-property-sidebar";
+import { ListPropertyHero } from "@/features/leads/listing-request/components/list-property-hero";
+import { ListPropertySteps } from "@/features/leads/listing-request/components/list-property-steps";
+import { ListPropertyForm } from "@/features/leads/listing-request/components/list-property-form";
+import { ListPropertySidebar } from "@/features/leads/listing-request/components/list-property-sidebar";
 import { Container } from "@/components/layout/container";
 import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 

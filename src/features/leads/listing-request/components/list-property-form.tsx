@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FormField } from "@/components/ui/form-field";
-import { TransactionTypeTile } from "@/features/request-property/components/transaction-type-tile";
+import { TransactionTypeTile } from "@/features/leads/property-request/components/transaction-type-tile";
 import { CATEGORIES } from "@/config/options";
 import {
   listPropertySchema,

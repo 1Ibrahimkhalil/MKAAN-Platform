@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PropertyDiscovery } from "@/features/property-discovery/components/property-discovery";
+import { PropertyDiscovery } from "@/features/properties/components/property-discovery";
 
 export const metadata: Metadata = {
   title: "استكشف العقارات | مكّان",

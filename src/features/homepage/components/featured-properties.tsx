@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
-import { PropertyCard } from "@/features/property-discovery/components/property-card";
-import type { PropertyCardData } from "@/features/property-discovery/types/property";
+import { PropertyCard } from "@/features/properties/components/property-card";
+import type { PropertyCardData } from "@/features/properties/types/property";
 
 const MOCK_PROPERTIES: PropertyCardData[] = [
   {
