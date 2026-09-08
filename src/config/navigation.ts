@@ -5,7 +5,6 @@ export const NAV_LINKS = [
   { href: ROUTES.PROPERTIES, label: "العقارات" },
   { href: ROUTES.SERVICES, label: "الخدمات" },
   { href: ROUTES.ABOUT, label: "عن مكان" },
-  { href: ROUTES.CONTACT, label: "تواصل معنا" },
 ];
 
 export const FOOTER_PROPERTY_LINKS = [
@@ -17,9 +16,9 @@ export const FOOTER_PROPERTY_LINKS = [
 ];
 
 export const FOOTER_SERVICE_LINKS = [
-  { href: ROUTES.SERVICE_BROKERAGE, label: "الوساطة العقارية" },
-  { href: ROUTES.SERVICE_FINISHING, label: "التشطيبات والتجهيز" },
+  { href: ROUTES.SERVICE_FINISHING, label: "التشطيبات" },
   { href: ROUTES.SERVICE_MAINTENANCE, label: "الصيانة" },
+  { href: ROUTES.SERVICE_PREP, label: "تجهيز العقار للبيع أو الإيجار" },
 ];
 
 export const FOOTER_LEGAL_LINKS = [

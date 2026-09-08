@@ -3,12 +3,11 @@ export const ROUTES = {
   PROPERTIES: "/properties",
   SERVICES: "/services",
   ABOUT: "/about",
-  CONTACT: "/contact",
   REQUEST_PROPERTY: "/request-property",
   LIST_PROPERTY: "/list-property",
   PRIVACY: "/privacy",
   TERMS: "/terms",
-  SERVICE_BROKERAGE: "/services/brokerage",
+  SERVICE_PREP: "/services/prep",
   SERVICE_FINISHING: "/services/finishing",
   SERVICE_MAINTENANCE: "/services/maintenance",
 } as const;
