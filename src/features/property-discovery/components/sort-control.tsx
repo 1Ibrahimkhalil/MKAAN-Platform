@@ -30,7 +30,11 @@ export function SortControl({
       <label className="text-muted-foreground text-sm whitespace-nowrap">
         ترتيب حسب:
       </label>
-      <Select value={value} onValueChange={(v) => onChange(v ?? "newest")}>
+      <Select
+        value={value}
+        onValueChange={(v) => onChange(v ?? "newest")}
+        options={options}
+      >
         <SelectTrigger className="w-auto">
           <SelectValue />
         </SelectTrigger>

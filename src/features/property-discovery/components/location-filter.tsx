@@ -24,7 +24,11 @@ export function LocationFilter({
       <label className="text-foreground mb-2 flex items-center gap-2 text-sm font-medium">
         المكان
       </label>
-      <Select value={value} onValueChange={(v) => onChange(v ?? "")}>
+      <Select
+        value={value}
+        onValueChange={(v) => onChange(v ?? "")}
+        options={LOCATION_OPTIONS}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="الكل" />
         </SelectTrigger>

@@ -34,7 +34,7 @@ function HeroSelect({
       <Label className="font-label-md text-muted-foreground px-1 text-sm font-bold">
         {label}
       </Label>
-      <Select defaultValue={defaultValue}>
+      <Select defaultValue={defaultValue} options={options}>
         <SelectTrigger
           hideChevron
           className="text-foreground hover:border-action focus:border-action focus:ring-action/20 data-[placeholder]:text-muted-foreground relative h-auto w-full cursor-pointer rounded-xl border bg-white/90 py-3 ps-9 pe-4 text-sm font-medium shadow-sm transition-colors hover:bg-white sm:py-4 sm:ps-10 sm:pe-5"

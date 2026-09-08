@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, Phone } from "lucide-react";
+import { Search } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { RevealOnScroll } from "@/components/feedback/reveal-on-scroll";
 
@@ -26,13 +26,6 @@ export function RequestPropertyCta() {
                 className="text-primary hover:text-action flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3 text-base font-bold shadow-lg transition-all hover:-translate-y-1 hover:bg-gray-100 md:px-12 md:py-4 md:text-lg"
               >
                 اطلب عقار الآن
-              </Link>
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 rounded-xl border-2 border-white/50 px-8 py-3 text-base font-bold text-white transition-all hover:border-white hover:bg-white/10 md:px-12 md:py-4 md:text-lg"
-              >
-                <Phone className="size-5" />
-                تواصل معنا
               </Link>
             </div>
           </div>
